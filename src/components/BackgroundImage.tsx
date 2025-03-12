@@ -1,0 +1,32 @@
+
+import React, { useEffect, useState } from 'react';
+
+const BackgroundImage: React.FC = () => {
+  const [loaded, setLoaded] = useState(false);
+  
+  useEffect(() => {
+    const img = new Image();
+    img.src = "https://images.unsplash.com/photo-1594737625785-a6cbdabd333c?q=80&w=2070&auto=format&fit=crop";
+    img.onload = () => setLoaded(true);
+  }, []);
+
+  return (
+    <>
+      <div className="fixed inset-0 z-[-2] bg-karate-black">
+        <div className="absolute inset-0 bg-karate-pattern opacity-5"></div>
+      </div>
+      <div 
+        className={`fixed inset-0 z-[-1] opacity-0 transition-opacity duration-1000 ease-out ${loaded ? 'opacity-20' : ''}`}
+        style={{
+          backgroundImage: "url(https://images.unsplash.com/photo-1594737625785-a6cbdabd333c?q=80&w=2070&auto=format&fit=crop)",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      >
+        <div className="absolute inset-0 bg-gradient-to-b from-karate-black/70 via-karate-black/60 to-karate-black"></div>
+      </div>
+    </>
+  );
+};
+
+export default BackgroundImage;
