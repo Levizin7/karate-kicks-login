@@ -9,9 +9,10 @@ import { User, Lock, ChevronRight } from "lucide-react";
 
 interface LoginFormProps {
   className?: string;
+  style?: React.CSSProperties;
 }
 
-const LoginForm: React.FC<LoginFormProps> = ({ className }) => {
+const LoginForm: React.FC<LoginFormProps> = ({ className, style }) => {
   const [loading, setLoading] = useState(false);
   const [credentials, setCredentials] = useState({
     email: '',
@@ -51,7 +52,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ className }) => {
   };
 
   return (
-    <div className={`glass-morphism p-8 rounded-xl max-w-md w-full mx-auto animate-scale-in ${className}`}>
+    <div className={`glass-morphism p-8 rounded-xl max-w-md w-full mx-auto animate-scale-in ${className}`} style={style}>
       <div className="mb-8 text-center">
         <h2 className="text-2xl font-bold text-karate-white mb-2 tracking-wide">Bem-vindo</h2>
         <p className="text-karate-white/60 text-sm">Entre para acessar sua conta</p>
