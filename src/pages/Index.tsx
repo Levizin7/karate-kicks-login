@@ -31,9 +31,16 @@ const Index = () => {
               <h1 className="text-5xl font-bold text-karate-white mb-4 tracking-tight leading-tight">
                 Karate <span className="text-karate-red">Shotokan</span>
               </h1>
-              <p className="text-karate-white/80 text-xl max-w-md mx-auto leading-relaxed">
+              <p className="text-karate-white/80 text-xl max-w-md mx-auto leading-relaxed mb-4">
                 O caminho para a excelência começa com o primeiro passo. Entre e continue sua jornada.
               </p>
+              <div className="flex items-center justify-center space-x-2 mb-2">
+                <div className="h-px w-16 bg-gradient-to-r from-transparent via-karate-white/40 to-transparent"></div>
+                <div className="h-1 w-1 rounded-full bg-karate-red"></div>
+                <div className="h-px w-40 bg-gradient-to-r from-transparent via-karate-white/40 to-transparent"></div>
+                <div className="h-1 w-1 rounded-full bg-karate-red"></div>
+                <div className="h-px w-16 bg-gradient-to-r from-transparent via-karate-white/40 to-transparent"></div>
+              </div>
             </div>
           </div>
           
@@ -47,9 +54,16 @@ const Index = () => {
                 <h1 className="text-3xl font-bold text-karate-white mb-3 tracking-tight leading-tight">
                   Karate <span className="text-karate-red">Shotokan</span>
                 </h1>
-                <p className="text-karate-white/70 max-w-sm mx-auto leading-relaxed">
+                <p className="text-karate-white/70 max-w-sm mx-auto leading-relaxed mb-4">
                   O caminho para a excelência começa com o primeiro passo. Entre e continue sua jornada.
                 </p>
+                <div className="flex items-center justify-center space-x-2 mb-2">
+                  <div className="h-px w-10 bg-gradient-to-r from-transparent via-karate-white/40 to-transparent"></div>
+                  <div className="h-1 w-1 rounded-full bg-karate-red"></div>
+                  <div className="h-px w-28 bg-gradient-to-r from-transparent via-karate-white/40 to-transparent"></div>
+                  <div className="h-1 w-1 rounded-full bg-karate-red"></div>
+                  <div className="h-px w-10 bg-gradient-to-r from-transparent via-karate-white/40 to-transparent"></div>
+                </div>
               </div>
               
               <LoginForm 
