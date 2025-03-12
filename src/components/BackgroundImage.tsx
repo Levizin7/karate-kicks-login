@@ -6,7 +6,7 @@ const BackgroundImage: React.FC = () => {
   
   useEffect(() => {
     const img = new Image();
-    img.src = "https://images.unsplash.com/photo-1594737625785-a6cbdabd333c?q=80&w=2070&auto=format&fit=crop";
+    img.src = "https://images.unsplash.com/photo-1555597673-b21d5c935865?q=80&w=2072&auto=format&fit=crop";
     img.onload = () => setLoaded(true);
   }, []);
 
@@ -18,7 +18,7 @@ const BackgroundImage: React.FC = () => {
       <div 
         className={`fixed inset-0 z-[-1] opacity-0 transition-opacity duration-1000 ease-out ${loaded ? 'opacity-20' : ''}`}
         style={{
-          backgroundImage: "url(https://images.unsplash.com/photo-1594737625785-a6cbdabd333c?q=80&w=2070&auto=format&fit=crop)",
+          backgroundImage: "url(https://images.unsplash.com/photo-1555597673-b21d5c935865?q=80&w=2072&auto=format&fit=crop)",
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}

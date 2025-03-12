@@ -17,7 +17,7 @@ const Index = () => {
       <BackgroundImage />
       
       <header className="container mx-auto py-6 px-4">
-        <Logo className={`opacity-0 ${mounted ? 'animate-fade-in' : ''}`} style={{ animationDelay: '300ms' }} />
+        <Logo className={`opacity-0 ${mounted ? 'animate-fade-in' : ''}`} />
       </header>
       
       <main className="flex-1 flex items-center justify-center px-4 py-12">
@@ -35,8 +35,7 @@ const Index = () => {
           </div>
           
           <LoginForm 
-            className={`opacity-0 ${mounted ? 'animate-fade-in' : ''}`} 
-            style={{ animationDelay: '900ms' }} 
+            className={`opacity-0 ${mounted ? 'animate-fade-in' : ''}`}
           />
         </div>
       </main>
