@@ -17,6 +17,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ className, style }) => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const [focused, setFocused] = useState<string | null>(null);
   const [credentials, setCredentials] = useState({
     username: '',
     password: '',
@@ -98,7 +99,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ className, style }) => {
             Nome de usuário
           </Label>
           <div className="relative">
-            <div className="absolute left-3 top-1/2 transform -translate-y-1/2 text-karate-white/50">
+            <div className={`absolute left-3 top-1/2 transform -translate-y-1/2 transition-colors duration-300 ${focused === 'username' ? 'text-karate-red' : 'text-karate-white/50'}`}>
               <User size={18} />
             </div>
             <Input
@@ -108,7 +109,9 @@ const LoginForm: React.FC<LoginFormProps> = ({ className, style }) => {
               placeholder="Nome de usuário"
               value={credentials.username}
               onChange={handleChange}
-              className="bg-white/5 border-white/10 pl-10 h-12 text-karate-white placeholder:text-karate-white/30 focus:border-karate-red/70 focus-visible:ring-0 focus-visible:outline-none transition-all duration-300"
+              onFocus={() => setFocused('username')}
+              onBlur={() => setFocused(null)}
+              className="bg-white/5 border-white/10 pl-10 h-12 text-karate-white placeholder:text-karate-white/30 focus:bg-white/10 transition-all duration-300"
               autoComplete="username"
               required
             />
@@ -125,7 +128,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ className, style }) => {
             </a>
           </div>
           <div className="relative">
-            <div className="absolute left-3 top-1/2 transform -translate-y-1/2 text-karate-white/50">
+            <div className={`absolute left-3 top-1/2 transform -translate-y-1/2 transition-colors duration-300 ${focused === 'password' ? 'text-karate-red' : 'text-karate-white/50'}`}>
               <Lock size={18} />
             </div>
             <Input
@@ -135,7 +138,9 @@ const LoginForm: React.FC<LoginFormProps> = ({ className, style }) => {
               placeholder="••••••••"
               value={credentials.password}
               onChange={handleChange}
-              className="bg-white/5 border-white/10 pl-10 h-12 text-karate-white placeholder:text-karate-white/30 focus:border-karate-red/70 focus-visible:ring-0 focus-visible:outline-none transition-all duration-300"
+              onFocus={() => setFocused('password')}
+              onBlur={() => setFocused(null)}
+              className="bg-white/5 border-white/10 pl-10 h-12 text-karate-white placeholder:text-karate-white/30 focus:bg-white/10 transition-all duration-300"
               autoComplete="current-password"
               required
             />
