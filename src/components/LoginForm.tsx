@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -111,7 +110,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ className, style }) => {
               onChange={handleChange}
               onFocus={() => setFocused('username')}
               onBlur={() => setFocused(null)}
-              className="bg-white/5 border-white/10 pl-10 h-12 text-karate-white placeholder:text-karate-white/30 focus:bg-white/10 transition-all duration-300"
+              className="bg-white/5 border-white/10 pl-10 h-12 text-karate-white placeholder:text-karate-white/30 focus:bg-white/10 focus-visible:shadow-[0_0_0_1px_rgba(196,30,58,0.5)] transition-all duration-300"
               autoComplete="username"
               required
             />
@@ -140,7 +139,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ className, style }) => {
               onChange={handleChange}
               onFocus={() => setFocused('password')}
               onBlur={() => setFocused(null)}
-              className="bg-white/5 border-white/10 pl-10 h-12 text-karate-white placeholder:text-karate-white/30 focus:bg-white/10 transition-all duration-300"
+              className="bg-white/5 border-white/10 pl-10 h-12 text-karate-white placeholder:text-karate-white/30 focus:bg-white/10 focus-visible:shadow-[0_0_0_1px_rgba(196,30,58,0.5)] transition-all duration-300"
               autoComplete="current-password"
               required
             />
