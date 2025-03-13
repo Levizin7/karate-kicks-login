@@ -14,8 +14,9 @@ interface LoginFormProps {
 
 const LoginForm: React.FC<LoginFormProps> = ({ className, style }) => {
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
   const [credentials, setCredentials] = useState({
-    email: '',
+    username: '',
     password: '',
     remember: false
   });
@@ -27,6 +28,8 @@ const LoginForm: React.FC<LoginFormProps> = ({ className, style }) => {
       ...prev,
       [name]: value
     }));
+    // Clear any previous error when user starts typing
+    if (error) setError('');
   };
 
   const handleCheckboxChange = (checked: boolean) => {
@@ -39,14 +42,20 @@ const LoginForm: React.FC<LoginFormProps> = ({ className, style }) => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
+    setError('');
     
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    
-    toast({
-      title: "Login successful",
-      description: "Welcome back to Karate Shotokan"
-    });
+    // Check for the specific credentials
+    if (credentials.username === 'Francivaldo' && credentials.password === 'karate2025') {
+      // Simulate API call
+      await new Promise(resolve => setTimeout(resolve, 1500));
+      
+      toast({
+        title: "Login bem-sucedido",
+        description: "Bem-vindo de volta ao Karate Shotokan"
+      });
+    } else {
+      setError('Nome de usuário ou senha incorretos');
+    }
     
     setLoading(false);
   };
@@ -60,22 +69,22 @@ const LoginForm: React.FC<LoginFormProps> = ({ className, style }) => {
       
       <form onSubmit={handleSubmit} className="space-y-5">
         <div className="space-y-2">
-          <Label htmlFor="email" className="text-sm font-medium text-karate-white/80">
-            E-mail
+          <Label htmlFor="username" className="text-sm font-medium text-karate-white/80">
+            Nome de usuário
           </Label>
           <div className="relative">
             <div className="absolute left-3 top-1/2 transform -translate-y-1/2 text-karate-white/50">
               <User size={18} />
             </div>
             <Input
-              id="email"
-              name="email"
-              type="email"
-              placeholder="seu@email.com"
-              value={credentials.email}
+              id="username"
+              name="username"
+              type="text"
+              placeholder="Nome de usuário"
+              value={credentials.username}
               onChange={handleChange}
               className="bg-white/5 border-white/10 pl-10 h-12 text-karate-white placeholder:text-karate-white/30 focus:border-karate-red/70 transition-all duration-300"
-              autoComplete="email"
+              autoComplete="username"
               required
             />
           </div>
@@ -108,6 +117,12 @@ const LoginForm: React.FC<LoginFormProps> = ({ className, style }) => {
           </div>
         </div>
         
+        {error && (
+          <div className="text-karate-red text-sm py-2 px-3 bg-karate-red/10 rounded-md border border-karate-red/20">
+            {error}
+          </div>
+        )}
+        
         <div className="flex items-center space-x-2">
           <Checkbox 
             id="remember" 
@@ -133,13 +148,6 @@ const LoginForm: React.FC<LoginFormProps> = ({ className, style }) => {
             <ChevronRight size={18} className="transition-transform duration-300 group-hover:translate-x-1" />
           </span>
         </Button>
-        
-        <div className="text-center text-sm text-karate-white/60 mt-6">
-          Não tem uma conta?{" "}
-          <a href="#" className="text-karate-white hover:text-karate-red font-medium transition-colors duration-200">
-            Cadastre-se
-          </a>
-        </div>
       </form>
     </div>
   );
