@@ -1,11 +1,11 @@
-
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 import { useToast } from "@/hooks/use-toast";
 import { User, Lock, ChevronRight } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 interface LoginFormProps {
   className?: string;
@@ -13,6 +13,7 @@ interface LoginFormProps {
 }
 
 const LoginForm: React.FC<LoginFormProps> = ({ className, style }) => {
+  const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [credentials, setCredentials] = useState({
@@ -22,13 +23,26 @@ const LoginForm: React.FC<LoginFormProps> = ({ className, style }) => {
   });
   const { toast } = useToast();
 
+  useEffect(() => {
+    const savedUsername = localStorage.getItem('karate_username');
+    const savedPassword = localStorage.getItem('karate_password');
+    const savedRemember = localStorage.getItem('karate_remember') === 'true';
+    
+    if (savedRemember && savedUsername && savedPassword) {
+      setCredentials({
+        username: savedUsername,
+        password: savedPassword,
+        remember: savedRemember
+      });
+    }
+  }, []);
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setCredentials(prev => ({
       ...prev,
       [name]: value
     }));
-    // Clear any previous error when user starts typing
     if (error) setError('');
   };
 
@@ -44,15 +58,25 @@ const LoginForm: React.FC<LoginFormProps> = ({ className, style }) => {
     setLoading(true);
     setError('');
     
-    // Check for the specific credentials
     if (credentials.username === 'Francivaldo' && credentials.password === 'karate2025') {
-      // Simulate API call
       await new Promise(resolve => setTimeout(resolve, 1500));
+      
+      if (credentials.remember) {
+        localStorage.setItem('karate_username', credentials.username);
+        localStorage.setItem('karate_password', credentials.password);
+        localStorage.setItem('karate_remember', 'true');
+      } else {
+        localStorage.removeItem('karate_username');
+        localStorage.removeItem('karate_password');
+        localStorage.removeItem('karate_remember');
+      }
       
       toast({
         title: "Login bem-sucedido",
         description: "Bem-vindo de volta ao Karate Shotokan"
       });
+      
+      navigate('/dashboard');
     } else {
       setError('Nome de usuário ou senha incorretos');
     }
