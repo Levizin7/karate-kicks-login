@@ -1,38 +1,31 @@
 
-import React from 'react';
-import { cn } from '@/lib/utils';
+import { cn } from "@/lib/utils";
+import { LucideIcon } from "lucide-react";
 
 interface StatCardProps {
   title: string;
   value: string | number;
-  icon: React.ReactNode;
+  icon: LucideIcon;
   iconColor?: string;
   className?: string;
 }
 
-const StatCard: React.FC<StatCardProps> = ({ 
-  title, 
-  value, 
-  icon, 
-  iconColor = "text-karate-red",
-  className
-}) => {
+export function StatCard({ title, value, icon: Icon, iconColor, className }: StatCardProps) {
   return (
     <div className={cn(
-      "bg-karate-gray border border-white/10 rounded-xl p-6 transition-all duration-300 hover:shadow-[0_0_15px_rgba(255,255,255,0.05)] hover:border-white/20",
+      "glass-card rounded-lg p-5 animate-scale-in hover-scale hover-glow",
       className
     )}>
-      <div className="flex items-start justify-between">
-        <div>
-          <h3 className="text-gray-400 font-medium mb-2">{title}</h3>
-          <p className="text-4xl font-bold text-white">{value}</p>
-        </div>
-        <div className={cn("p-2.5 rounded-lg bg-white/5", iconColor)}>
-          {icon}
+      <div className="flex items-center justify-between">
+        <p className="text-sm font-medium text-muted-foreground">{title}</p>
+        <div className={cn(
+          "rounded-full p-2", 
+          iconColor || "bg-primary/10 text-primary"
+        )}>
+          <Icon className="h-5 w-5" />
         </div>
       </div>
+      <p className="mt-3 text-4xl font-bold leading-tight">{value}</p>
     </div>
   );
-};
-
-export default StatCard;
+}
