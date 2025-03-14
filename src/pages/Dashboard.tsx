@@ -12,12 +12,11 @@ const Dashboard = () => {
 
   // This will help ensure we're on the proper route
   useEffect(() => {
-    // Check if the user is authenticated
+    // Check if the user is authenticated - just need the username, not necessarily both
     const savedUsername = localStorage.getItem('karate_username');
-    const savedPassword = localStorage.getItem('karate_password');
     
     // If not authenticated, redirect to the login page
-    if (!savedUsername && !savedPassword) {
+    if (!savedUsername) {
       navigate('/');
     }
   }, [navigate]);

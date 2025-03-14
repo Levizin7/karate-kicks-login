@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -62,12 +63,13 @@ const LoginForm: React.FC<LoginFormProps> = ({ className, style }) => {
     if (credentials.username === 'Francivaldo' && credentials.password === 'karate2025') {
       await new Promise(resolve => setTimeout(resolve, 1500));
       
+      // Always store the username to mark the user as logged in
+      localStorage.setItem('karate_username', credentials.username);
+      
       if (credentials.remember) {
-        localStorage.setItem('karate_username', credentials.username);
         localStorage.setItem('karate_password', credentials.password);
         localStorage.setItem('karate_remember', 'true');
       } else {
-        localStorage.removeItem('karate_username');
         localStorage.removeItem('karate_password');
         localStorage.removeItem('karate_remember');
       }
