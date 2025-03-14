@@ -80,6 +80,20 @@
   html {
     @apply scroll-smooth;
   }
+  
+  .light-theme {
+    --karate-black: 0 0% 98%;  /* Light background */
+    --karate-white: 222 47% 11%;  /* Dark text */
+    --karate-paper: 0 0% 100%;  /* Light paper */
+    --karate-gray: 210 20% 98%;  /* Light gray */
+  }
+  
+  :root:not(.light-theme) {
+    --karate-black: 220 13% 10%;  /* Dark background */
+    --karate-white: 0 0% 100%;  /* Light text */
+    --karate-paper: 40 33% 92%;  /* Paper color */
+    --karate-gray: 215 14% 16%;  /* Dark gray */
+  }
 }
 
 @layer utilities {
@@ -106,5 +120,14 @@
   
   .shimmer {
     @apply relative overflow-hidden before:absolute before:inset-0 before:-translate-x-full before:animate-shimmer before:bg-gradient-to-r before:from-transparent before:via-white/10 before:to-transparent;
+  }
+  
+  /* Light theme specific styles */
+  .light-theme .glass-morphism {
+    @apply backdrop-blur-lg bg-black/5 border border-black/10 shadow-[0_4px_12px_-2px_rgba(0,0,0,0.1)];
+  }
+  
+  .light-theme .neo-blur {
+    @apply backdrop-blur-2xl bg-white/80 border border-black/5;
   }
 }
