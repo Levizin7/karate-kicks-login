@@ -1,13 +1,26 @@
 
-import React from 'react';
-import { Outlet, useLocation } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import DashboardSidebar from '@/components/DashboardSidebar';
 import DashboardOverview from '@/pages/DashboardOverview';
 import { ThemeProvider } from '@/components/ThemeProvider';
 
 const Dashboard = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const isRootDashboard = location.pathname === '/dashboard';
+
+  // This will help ensure we're on the proper route
+  useEffect(() => {
+    // Check if the user is authenticated
+    const savedUsername = localStorage.getItem('karate_username');
+    const savedPassword = localStorage.getItem('karate_password');
+    
+    // If not authenticated, redirect to the login page
+    if (!savedUsername && !savedPassword) {
+      navigate('/');
+    }
+  }, [navigate]);
 
   return (
     <ThemeProvider>
