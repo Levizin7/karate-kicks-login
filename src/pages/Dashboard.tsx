@@ -24,13 +24,9 @@ const Dashboard = () => {
   return (
     <ThemeProvider>
       <div className="flex min-h-screen bg-karate-black transition-colors duration-200 light-theme:bg-karate-paper">
-        <div className="fixed h-screen">
-          <DashboardSidebar />
-        </div>
-        <div className="flex-1 ml-64 overflow-y-auto">
-          <div className="container mx-auto p-6 max-w-6xl">
-            {isRootDashboard ? <DashboardOverview /> : <Outlet />}
-          </div>
+        <DashboardSidebar />
+        <div className="flex-1 overflow-y-auto">
+          {isRootDashboard ? <DashboardOverview /> : <Outlet />}
         </div>
       </div>
     </ThemeProvider>

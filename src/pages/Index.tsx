@@ -34,33 +34,18 @@ const Index = () => {
               <p className="text-karate-white/80 text-xl max-w-md mx-auto leading-relaxed mb-4">
                 O caminho para a excelência começa com o primeiro passo. Entre e continue sua jornada.
               </p>
-              <div className="flex items-center justify-center space-x-3 mb-8 mt-6">
+              <div className="flex items-center justify-center space-x-2 mb-2">
                 <div className="h-px w-16 bg-gradient-to-r from-transparent via-karate-white/40 to-transparent"></div>
-                <div className="h-2 w-2 rounded-full bg-karate-red animate-pulse"></div>
+                <div className="h-1 w-1 rounded-full bg-karate-red"></div>
                 <div className="h-px w-40 bg-gradient-to-r from-transparent via-karate-white/40 to-transparent"></div>
-                <div className="h-2 w-2 rounded-full bg-karate-red animate-pulse"></div>
+                <div className="h-1 w-1 rounded-full bg-karate-red"></div>
                 <div className="h-px w-16 bg-gradient-to-r from-transparent via-karate-white/40 to-transparent"></div>
-              </div>
-              
-              <div className="flex gap-4 justify-center mt-8">
-                <div className="bg-white/5 p-4 rounded-lg border border-white/10 backdrop-blur-sm w-24 h-24 flex flex-col items-center justify-center transition-transform hover:scale-105">
-                  <div className="text-3xl font-bold text-karate-red">10+</div>
-                  <div className="text-xs text-karate-white/60 mt-1">Anos de experiência</div>
-                </div>
-                <div className="bg-white/5 p-4 rounded-lg border border-white/10 backdrop-blur-sm w-24 h-24 flex flex-col items-center justify-center transition-transform hover:scale-105">
-                  <div className="text-3xl font-bold text-karate-red">500+</div>
-                  <div className="text-xs text-karate-white/60 mt-1">Alunos</div>
-                </div>
-                <div className="bg-white/5 p-4 rounded-lg border border-white/10 backdrop-blur-sm w-24 h-24 flex flex-col items-center justify-center transition-transform hover:scale-105">
-                  <div className="text-3xl font-bold text-karate-red">50+</div>
-                  <div className="text-xs text-karate-white/60 mt-1">Torneios</div>
-                </div>
               </div>
             </div>
           </div>
           
           {/* Coluna direita - formulário de login */}
-          <div className="flex items-center justify-center p-6 lg:p-10 bg-gradient-to-r from-black/20 to-transparent backdrop-blur-md lg:backdrop-blur-none">
+          <div className="flex items-center justify-center p-6 lg:p-10">
             <div className="w-full max-w-md">
               <div 
                 className={`text-center mb-8 lg:hidden opacity-0 ${mounted ? 'animate-fade-in' : ''}`}
