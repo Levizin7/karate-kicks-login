@@ -1,6 +1,6 @@
 
 import { BarChart2, Calendar, Home, LogOut, Settings, Shield, Users } from "lucide-react";
-import { Logo } from "@/components/Logo";
+import Logo from "@/components/Logo";
 import { SidebarLink } from "@/components/SidebarLink";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { Separator } from "@/components/ui/separator";

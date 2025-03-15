@@ -1,7 +1,7 @@
 
 import React from 'react';
 import DashboardHeader from '@/components/DashboardHeader';
-import StatCard from '@/components/StatCard';
+import { StatCard } from '@/components/StatCard';
 import EventCard from '@/components/EventCard';
 import QuickAction from '@/components/QuickAction';
 import { Users, Calendar, ListChecks, Award, Trophy, ListFilter } from 'lucide-react';
@@ -19,25 +19,25 @@ const DashboardOverview = () => {
         <StatCard 
           title="Total Atletas" 
           value="124" 
-          icon={<Users size={24} />} 
+          icon={Users} 
           iconColor="text-karate-red" 
         />
         <StatCard 
           title="Eventos Ativos" 
           value="3" 
-          icon={<Calendar size={24} />} 
+          icon={Calendar} 
           iconColor="text-green-500" 
         />
         <StatCard 
           title="Categorias" 
           value="15" 
-          icon={<ListChecks size={24} />} 
+          icon={ListChecks} 
           iconColor="text-amber-500" 
         />
         <StatCard 
           title="Lutas Concluídas" 
           value="48" 
-          icon={<Award size={24} />} 
+          icon={Award} 
           iconColor="text-purple-500" 
         />
       </div>
