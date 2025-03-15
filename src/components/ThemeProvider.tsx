@@ -12,11 +12,14 @@ const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
   const [theme, setTheme] = useState<Theme>("dark");
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    setMounted(true);
     const savedTheme = localStorage.getItem("karate_theme") as Theme | null;
     if (savedTheme) {
       setTheme(savedTheme);
+      document.documentElement.classList.toggle("dark", savedTheme === "dark");
       document.documentElement.classList.toggle("light-theme", savedTheme === "light");
     }
   }, []);
@@ -25,8 +28,21 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
     const newTheme = theme === "dark" ? "light" : "dark";
     setTheme(newTheme);
     localStorage.setItem("karate_theme", newTheme);
-    document.documentElement.classList.toggle("light-theme", newTheme === "light");
+    
+    // Apply classes with transitions
+    if (newTheme === "dark") {
+      document.documentElement.classList.add("dark");
+      document.documentElement.classList.remove("light-theme");
+    } else {
+      document.documentElement.classList.remove("dark");
+      document.documentElement.classList.add("light-theme");
+    }
   };
+
+  if (!mounted) {
+    // Return a placeholder to avoid layout shifts
+    return <>{children}</>;
+  }
 
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme }}>

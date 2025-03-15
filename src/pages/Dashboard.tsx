@@ -27,24 +27,24 @@ const Dashboard = () => {
 
   return (
     <ThemeProvider>
-      <div className="flex min-h-screen bg-background">
+      <div className="flex min-h-screen bg-background transition-colors duration-300">
         <Sidebar />
         
         <div className="flex-1 ml-64">
           {isRootDashboard ? (
             <>
-              <header className="sticky top-0 z-40 flex items-center justify-between gap-4 border-b bg-background/95 px-8 py-4 backdrop-blur">
+              <header className="sticky top-0 z-40 flex items-center justify-between gap-4 border-b bg-background/95 px-8 py-4 backdrop-blur transition-all duration-300 animate-fade-in">
                 <div>
                   <h1 className="text-2xl font-semibold tracking-tight">Visão Geral</h1>
                   <p className="text-muted-foreground">Bem-vindo ao seu centro de gerenciamento de torneios de karatê</p>
                 </div>
                 
                 <div className="flex items-center gap-3">
-                  <Button variant="outline" className="gap-2">
+                  <Button variant="outline" className="gap-2 animate-scale-in" style={{ animationDelay: '100ms' }}>
                     <Trophy className="h-4 w-4" />
                     <span>Torneio</span>
                   </Button>
-                  <Button className="gap-2">
+                  <Button className="gap-2 animate-scale-in" style={{ animationDelay: '200ms' }}>
                     <span>Novo Atleta</span>
                     <span className="text-lg">+</span>
                   </Button>
@@ -58,30 +58,38 @@ const Dashboard = () => {
                     value="124" 
                     icon={Users} 
                     iconColor="bg-primary/10 text-primary"
+                    className="animate-fade-in"
+                    style={{ animationDelay: '100ms' }}
                   />
                   <StatCard 
                     title="Eventos Ativos" 
                     value="3" 
                     icon={Calendar} 
                     iconColor="bg-green-500/10 text-green-500"
+                    className="animate-fade-in"
+                    style={{ animationDelay: '200ms' }}
                   />
                   <StatCard 
                     title="Categorias" 
                     value="15" 
                     icon={List} 
                     iconColor="bg-yellow-500/10 text-yellow-500"
+                    className="animate-fade-in"
+                    style={{ animationDelay: '300ms' }}
                   />
                   <StatCard 
                     title="Lutas Concluídas" 
                     value="48" 
                     icon={Award} 
                     iconColor="bg-purple-500/10 text-purple-500"
+                    className="animate-fade-in"
+                    style={{ animationDelay: '400ms' }}
                   />
                 </div>
                 
                 <div className="grid grid-cols-1 lg:grid-cols-5 gap-8">
                   <div className="lg:col-span-3">
-                    <div className="flex items-center justify-between mb-5">
+                    <div className="flex items-center justify-between mb-5 animate-fade-in" style={{ animationDelay: '450ms' }}>
                       <div>
                         <h2 className="text-xl font-semibold">Lutas de hoje</h2>
                         <p className="text-sm text-muted-foreground">Próximas lutas e eventos</p>
@@ -98,27 +106,33 @@ const Dashboard = () => {
                         time="10:30 AM" 
                         mat="Mat 1" 
                         player1="John D." 
-                        player2="Mike S." 
+                        player2="Mike S."
+                        className="animate-slide-in-right"
+                        style={{ animationDelay: '500ms' }}
                       />
                       <MatchCard 
                         category="Female Kata" 
                         time="11:15 AM" 
                         mat="Mat 2" 
                         player1="Anna K." 
-                        player2="Sarah L." 
+                        player2="Sarah L."
+                        className="animate-slide-in-right"
+                        style={{ animationDelay: '600ms' }}
                       />
                       <MatchCard 
                         category="Junior Kumite" 
                         time="12:00 PM" 
                         mat="Mat 3" 
                         player1="David R." 
-                        player2="Alex M." 
+                        player2="Alex M."
+                        className="animate-slide-in-right"
+                        style={{ animationDelay: '700ms' }}
                       />
                     </div>
                   </div>
                   
                   <div className="lg:col-span-2">
-                    <div className="mb-5">
+                    <div className="mb-5 animate-fade-in" style={{ animationDelay: '450ms' }}>
                       <h2 className="text-xl font-semibold">Ações Rápidas</h2>
                       <p className="text-sm text-muted-foreground">Funções mais usadas</p>
                     </div>
@@ -128,19 +142,25 @@ const Dashboard = () => {
                         icon={Award} 
                         title="Iniciar Pontuação" 
                         description="Registrar pontos das lutas" 
-                        to="/dashboard/pontuacao" 
+                        to="/dashboard/pontuacao"
+                        className="animate-scale-in"
+                        style={{ animationDelay: '500ms' }}
                       />
                       <ActionCard 
                         icon={List} 
                         title="Gerenciar Categorias" 
                         description="Editar divisões de peso e idade" 
-                        to="/dashboard/categorias" 
+                        to="/dashboard/categorias"
+                        className="animate-scale-in"
+                        style={{ animationDelay: '600ms' }}
                       />
                       <ActionCard 
                         icon={Trophy} 
                         title="Visualizar Resultados" 
                         description="Ver classificação do torneio" 
-                        to="/dashboard/resultados" 
+                        to="/dashboard/resultados"
+                        className="animate-scale-in"
+                        style={{ animationDelay: '700ms' }}
                       />
                     </div>
                   </div>
