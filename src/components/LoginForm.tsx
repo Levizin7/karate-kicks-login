@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -25,20 +25,6 @@ const LoginForm: React.FC<LoginFormProps> = ({ className, style }) => {
   });
   const { toast } = useToast();
 
-  useEffect(() => {
-    const savedUsername = localStorage.getItem('karate_username');
-    const savedPassword = localStorage.getItem('karate_password');
-    const savedRemember = localStorage.getItem('karate_remember') === 'true';
-    
-    if (savedRemember && savedUsername && savedPassword) {
-      setCredentials({
-        username: savedUsername,
-        password: savedPassword,
-        remember: savedRemember
-      });
-    }
-  }, []);
-
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setCredentials(prev => ({
@@ -63,13 +49,13 @@ const LoginForm: React.FC<LoginFormProps> = ({ className, style }) => {
     if (credentials.username === 'Francivaldo' && credentials.password === 'karate2025') {
       await new Promise(resolve => setTimeout(resolve, 1500));
       
-      // Always store the username to mark the user as logged in
-      localStorage.setItem('karate_username', credentials.username);
-      
+      // Store credentials if "remember me" is checked
       if (credentials.remember) {
+        localStorage.setItem('karate_username', credentials.username);
         localStorage.setItem('karate_password', credentials.password);
         localStorage.setItem('karate_remember', 'true');
       } else {
+        localStorage.setItem('karate_username', credentials.username);
         localStorage.removeItem('karate_password');
         localStorage.removeItem('karate_remember');
       }
