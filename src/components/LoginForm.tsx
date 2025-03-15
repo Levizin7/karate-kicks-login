@@ -76,12 +76,12 @@ const LoginForm: React.FC<LoginFormProps> = ({ className, style }) => {
   return (
     <div className={`glass-morphism p-8 rounded-xl max-w-md w-full mx-auto ${className}`} style={style}>
       <div className="mb-8 text-center">
-        <h2 className="text-2xl font-bold text-karate-white mb-2 tracking-wide">Bem-vindo</h2>
-        <p className="text-karate-white/60 text-sm">Entre para acessar sua conta</p>
+        <h2 className="text-2xl font-bold text-karate-white mb-2 tracking-wide animate-scale-in">Bem-vindo</h2>
+        <p className="text-karate-white/60 text-sm animate-fade-in" style={{ animationDelay: '100ms' }}>Entre para acessar sua conta</p>
       </div>
       
       <form onSubmit={handleSubmit} className="space-y-5">
-        <div className="space-y-2">
+        <div className="space-y-2 animate-fade-in" style={{ animationDelay: '200ms' }}>
           <Label htmlFor="username" className="text-sm font-medium text-karate-white/80">
             Nome de usuário
           </Label>
@@ -105,7 +105,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ className, style }) => {
           </div>
         </div>
         
-        <div className="space-y-2">
+        <div className="space-y-2 animate-fade-in" style={{ animationDelay: '300ms' }}>
           <div className="flex items-center justify-between">
             <Label htmlFor="password" className="text-sm font-medium text-karate-white/80">
               Senha
@@ -135,12 +135,12 @@ const LoginForm: React.FC<LoginFormProps> = ({ className, style }) => {
         </div>
         
         {error && (
-          <div className="text-karate-red text-sm py-2 px-3 bg-karate-red/10 rounded-md border border-karate-red/20">
+          <div className="text-karate-red text-sm py-2 px-3 bg-karate-red/10 rounded-md border border-karate-red/20 animate-shake">
             {error}
           </div>
         )}
         
-        <div className="flex items-center space-x-2">
+        <div className="flex items-center space-x-2 animate-fade-in" style={{ animationDelay: '400ms' }}>
           <Checkbox 
             id="remember" 
             checked={credentials.remember}
@@ -158,7 +158,8 @@ const LoginForm: React.FC<LoginFormProps> = ({ className, style }) => {
         <Button 
           type="submit" 
           disabled={loading}
-          className="w-full bg-karate-red hover:bg-karate-red/90 text-white h-12 font-medium transition-all duration-300 group relative overflow-hidden"
+          className="w-full bg-karate-red hover:bg-karate-red/90 text-white h-12 font-medium transition-all duration-300 group relative overflow-hidden animate-fade-in animate-scale-in"
+          style={{ animationDelay: '500ms' }}
         >
           <span className="relative z-10 flex items-center justify-center gap-2">
             {loading ? 'Entrando...' : 'Entrar'}
