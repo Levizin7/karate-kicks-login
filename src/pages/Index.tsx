@@ -17,17 +17,14 @@ const Index = () => {
       <BackgroundImage />
       
       <header className="pt-6 px-6 lg:px-10">
-        <Logo className={`opacity-0 ${mounted ? 'animate-fade-in' : ''}`} />
+        <Logo className="opacity-100" />
       </header>
       
       <main className="flex-1 flex items-center">
         <div className="w-full grid grid-cols-1 lg:grid-cols-2 h-full">
           {/* Coluna esquerda - decorativa */}
           <div className="hidden lg:flex items-center justify-center p-10">
-            <div 
-              className={`text-center opacity-0 ${mounted ? 'animate-fade-in' : ''}`}
-              style={{ animationDelay: '600ms' }}
-            >
+            <div className="text-center opacity-100">
               <h1 className="text-5xl font-bold text-karate-white mb-4 tracking-tight leading-tight">
                 Karate <span className="text-karate-red">Shotokan</span>
               </h1>
@@ -47,10 +44,7 @@ const Index = () => {
           {/* Coluna direita - formulário de login */}
           <div className="flex items-center justify-center p-6 lg:p-10">
             <div className="w-full max-w-md">
-              <div 
-                className={`text-center mb-8 lg:hidden opacity-0 ${mounted ? 'animate-fade-in' : ''}`}
-                style={{ animationDelay: '600ms' }}
-              >
+              <div className="text-center mb-8 lg:hidden opacity-100">
                 <h1 className="text-3xl font-bold text-karate-white mb-3 tracking-tight leading-tight">
                   Karate <span className="text-karate-red">Shotokan</span>
                 </h1>
@@ -66,20 +60,14 @@ const Index = () => {
                 </div>
               </div>
               
-              <LoginForm 
-                className={`opacity-0 ${mounted ? 'animate-fade-in' : ''}`}
-                style={{ animationDelay: '800ms' }}
-              />
+              <LoginForm className="opacity-100" />
             </div>
           </div>
         </div>
       </main>
       
       <footer className="py-4 px-6">
-        <div 
-          className={`text-center text-sm text-karate-white/40 opacity-0 ${mounted ? 'animate-fade-in' : ''}`}
-          style={{ animationDelay: '1000ms' }}
-        >
+        <div className="text-center text-sm text-karate-white/40 opacity-100">
           &copy; {new Date().getFullYear()} Associação de Karate Shotokan. Todos os direitos reservados.
         </div>
       </footer>

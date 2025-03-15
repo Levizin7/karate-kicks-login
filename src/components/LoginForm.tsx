@@ -74,7 +74,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ className, style }) => {
   };
 
   return (
-    <div className={`glass-morphism p-8 rounded-xl max-w-md w-full mx-auto animate-scale-in ${className}`} style={style}>
+    <div className={`glass-morphism p-8 rounded-xl max-w-md w-full mx-auto ${className}`} style={style}>
       <div className="mb-8 text-center">
         <h2 className="text-2xl font-bold text-karate-white mb-2 tracking-wide">Bem-vindo</h2>
         <p className="text-karate-white/60 text-sm">Entre para acessar sua conta</p>
@@ -158,7 +158,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ className, style }) => {
         <Button 
           type="submit" 
           disabled={loading}
-          className="w-full bg-karate-red hover:bg-karate-red/90 text-white h-12 font-medium transition-all duration-300 group relative overflow-hidden shimmer"
+          className="w-full bg-karate-red hover:bg-karate-red/90 text-white h-12 font-medium transition-all duration-300 group relative overflow-hidden"
         >
           <span className="relative z-10 flex items-center justify-center gap-2">
             {loading ? 'Entrando...' : 'Entrar'}
