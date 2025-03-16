@@ -1,4 +1,3 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -167,6 +166,22 @@
     
     .mobile-stack {
       flex-direction: column !important;
+    }
+
+    .mobile-text-sm {
+      font-size: 0.875rem !important;
+    }
+
+    .mobile-text-xs {
+      font-size: 0.75rem !important;
+    }
+
+    .mobile-hidden {
+      display: none !important;
+    }
+
+    .mobile-pt-safe {
+      padding-top: calc(env(safe-area-inset-top) + 1rem) !important;
     }
   }
   

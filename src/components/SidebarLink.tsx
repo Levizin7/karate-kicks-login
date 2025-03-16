@@ -19,7 +19,7 @@ export function SidebarLink({ icon: Icon, label, to, className, style }: Sidebar
     <Link
       to={to}
       className={cn(
-        "group flex items-center gap-x-3 rounded-md px-3 py-2.5 text-sm font-medium transition-all",
+        "group flex items-center gap-x-3 rounded-md px-3 py-2.5 text-sm font-medium transition-all duration-200",
         isActive
           ? "bg-primary text-primary-foreground shadow-sm"
           : "text-foreground/80 hover:bg-muted",
@@ -27,7 +27,7 @@ export function SidebarLink({ icon: Icon, label, to, className, style }: Sidebar
       )}
       style={style}
     >
-      <Icon className={cn("h-5 w-5 shrink-0", isActive ? "text-primary-foreground" : "text-foreground/70")} aria-hidden="true" />
+      <Icon className={cn("h-5 w-5 shrink-0 transition-colors duration-200", isActive ? "text-primary-foreground" : "text-foreground/70")} aria-hidden="true" />
       <span className="truncate">{label}</span>
     </Link>
   );

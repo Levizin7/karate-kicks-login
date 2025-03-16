@@ -7,6 +7,7 @@ import { StatCard } from "@/components/StatCard";
 import { MatchCard } from "@/components/MatchCard";
 import { ActionCard } from "@/components/ActionCard";
 import { Sidebar } from "@/components/Sidebar";
+import { MobileMenu } from "@/components/MobileMenu";
 import { ThemeProvider } from '@/components/ThemeProvider';
 
 const Dashboard = () => {
@@ -29,14 +30,15 @@ const Dashboard = () => {
     <ThemeProvider>
       <div className="flex min-h-screen bg-background transition-colors duration-300">
         <Sidebar />
+        <MobileMenu />
         
-        <div className="flex-1 md:ml-64">
+        <div className="flex-1 md:ml-64 pb-16 md:pb-0">
           {isRootDashboard ? (
             <>
               <header className="sticky top-0 z-30 flex items-center justify-between gap-4 border-b bg-background/95 px-4 sm:px-6 md:px-8 py-4 backdrop-blur transition-all duration-300 animate-fade-in">
-                <div>
+                <div className="ml-10 md:ml-0">
                   <h1 className="text-xl sm:text-2xl font-semibold tracking-tight">Visão Geral</h1>
-                  <p className="text-sm text-muted-foreground">Bem-vindo ao seu centro de gerenciamento de torneios de karatê</p>
+                  <p className="text-sm text-muted-foreground">Bem-vindo ao seu centro de gerenciamento</p>
                 </div>
                 
                 <div className="flex items-center gap-2 sm:gap-3">
@@ -46,13 +48,13 @@ const Dashboard = () => {
                   </Button>
                   <Button size="sm" className="gap-2 animate-scale-in" style={{ animationDelay: '200ms' }}>
                     <span className="hidden sm:inline">Novo Atleta</span>
-                    <span className="sm:text-lg">+</span>
+                    <span className="sm:hidden">+</span>
                   </Button>
                 </div>
               </header>
               
               <main className="px-4 sm:px-6 md:px-8 py-4 sm:py-6">
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-6 sm:mb-10">
+                <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6 mb-6 sm:mb-10">
                   <StatCard 
                     title="Total Atletas" 
                     value="124" 
@@ -168,7 +170,7 @@ const Dashboard = () => {
               </main>
             </>
           ) : (
-            <div className="p-4 sm:p-6 md:p-8">
+            <div className="p-4 pt-16 md:pt-4 sm:p-6 md:p-8">
               <Outlet />
             </div>
           )}

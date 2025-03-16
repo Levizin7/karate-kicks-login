@@ -1,17 +1,13 @@
 
-import { BarChart2, Calendar, Home, LogOut, Menu, Settings, Shield, Users, X } from "lucide-react";
+import { BarChart2, Calendar, Home, LogOut, Shield, Users, Settings } from "lucide-react";
 import { SidebarLink } from "@/components/SidebarLink";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { Separator } from "@/components/ui/separator";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import { Button } from "@/components/ui/button";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
 
 export function Sidebar() {
   const navigate = useNavigate();
-  const [isOpen, setIsOpen] = useState(false);
 
   const handleLogout = () => {
     localStorage.removeItem('karate_username');
@@ -20,9 +16,8 @@ export function Sidebar() {
     navigate('/');
   };
 
-  // Create reusable sidebar content
-  const SidebarContent = () => (
-    <>
+  return (
+    <div className="hidden md:fixed md:inset-y-0 md:left-0 md:z-40 md:flex md:w-64 md:flex-col border-r bg-sidebar border-border transition-colors duration-300">
       <div className="flex shrink-0 items-center gap-2 px-6 py-5 animate-fade-in">
         <div className="w-8 h-8 bg-primary rounded-md flex items-center justify-center transition-colors duration-300">
           <span className="text-white font-bold">K</span>
@@ -30,7 +25,7 @@ export function Sidebar() {
         <h1 className="text-xl font-bold transition-colors duration-300">Karate Manager</h1>
       </div>
       
-      <div className="flex flex-1 flex-col px-4 py-4 gap-1">
+      <div className="flex flex-1 flex-col px-4 py-4 gap-1 overflow-auto">
         <SidebarLink 
           icon={Home} 
           label="Visão Geral" 
@@ -106,40 +101,6 @@ export function Sidebar() {
           <span>Logout</span>
         </button>
       </div>
-    </>
-  );
-
-  return (
-    <>
-      {/* Mobile menu button */}
-      <div className="md:hidden fixed top-4 left-4 z-50">
-        <Sheet open={isOpen} onOpenChange={setIsOpen}>
-          <SheetTrigger asChild>
-            <Button variant="outline" size="icon" className="rounded-full">
-              <Menu className="h-5 w-5" />
-              <span className="sr-only">Toggle menu</span>
-            </Button>
-          </SheetTrigger>
-          <SheetContent side="left" className="p-0 w-[280px] sm:w-[350px] border-r bg-sidebar">
-            <div className="flex h-full flex-col">
-              <Button 
-                variant="ghost" 
-                size="icon" 
-                className="absolute right-4 top-4 rounded-full"
-                onClick={() => setIsOpen(false)}
-              >
-                <X className="h-5 w-5" />
-              </Button>
-              <SidebarContent />
-            </div>
-          </SheetContent>
-        </Sheet>
-      </div>
-
-      {/* Desktop sidebar */}
-      <div className="hidden md:fixed md:inset-y-0 md:left-0 md:z-50 md:flex md:w-64 md:flex-col border-r bg-sidebar border-border transition-colors duration-300">
-        <SidebarContent />
-      </div>
-    </>
+    </div>
   );
 }
