@@ -27,7 +27,7 @@ const Dashboard = () => {
   }, [navigate]);
 
   return (
-    <ThemeProvider>
+    <ThemeProvider defaultTheme="dark" storageKey="karate-ui-theme">
       <div className="flex min-h-screen bg-background transition-colors duration-300">
         <Sidebar />
         <MobileMenu />
