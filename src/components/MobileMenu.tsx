@@ -1,18 +1,19 @@
 
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Moon, Sun } from "lucide-react";
 import { SidebarLink } from "@/components/SidebarLink";
-import { Home, Users, Shield, Calendar, BarChart2, Settings } from "lucide-react";
+import { Home, Users, Shield, Calendar, BarChart2, Settings, LogOut } from "lucide-react";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import { ThemeToggle } from "@/components/ThemeToggle";
 import { Separator } from "@/components/ui/separator";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { useTheme } from "./ThemeProvider";
 
 export function MobileMenu() {
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
+  const { theme, toggleTheme } = useTheme();
 
   const handleLogout = () => {
     localStorage.removeItem('karate_username');
@@ -111,7 +112,15 @@ export function MobileMenu() {
                     <span className="text-xs text-muted-foreground transition-colors duration-300">Administrador</span>
                   </div>
                 </div>
-                <ThemeToggle iconOnly />
+                <Button 
+                  variant="ghost" 
+                  size="icon"
+                  onClick={toggleTheme}
+                  className="text-muted-foreground hover:text-foreground"
+                >
+                  {theme === 'dark' ? <Sun className="h-[1.2rem] w-[1.2rem]" /> : <Moon className="h-[1.2rem] w-[1.2rem]" />}
+                  <span className="sr-only">Toggle theme</span>
+                </Button>
               </div>
               
               <Separator className="my-4 transition-colors duration-300" />
@@ -120,6 +129,7 @@ export function MobileMenu() {
                 onClick={handleLogout}
                 className="flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm font-medium text-foreground/80 hover:bg-muted transition-all duration-300"
               >
+                <LogOut className="h-4 w-4 text-foreground/70" />
                 <span>Logout</span>
               </button>
             </div>

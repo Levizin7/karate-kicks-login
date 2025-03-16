@@ -1,13 +1,15 @@
 
-import { BarChart2, Calendar, Home, LogOut, Shield, Users, Settings } from "lucide-react";
+import { BarChart2, Calendar, Home, LogOut, Shield, Users, Settings, Sun, Moon } from "lucide-react";
 import { SidebarLink } from "@/components/SidebarLink";
-import { ThemeToggle } from "@/components/ThemeToggle";
 import { Separator } from "@/components/ui/separator";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { useNavigate } from "react-router-dom";
+import { Button } from "@/components/ui/button";
+import { useTheme } from "./ThemeProvider";
 
 export function Sidebar() {
   const navigate = useNavigate();
+  const { theme, toggleTheme } = useTheme();
 
   const handleLogout = () => {
     localStorage.removeItem('karate_username');
@@ -88,7 +90,15 @@ export function Sidebar() {
               <span className="text-xs text-muted-foreground transition-colors duration-300">Administrador</span>
             </div>
           </div>
-          <ThemeToggle iconOnly />
+          <Button 
+            variant="ghost" 
+            size="icon"
+            onClick={toggleTheme}
+            className="text-muted-foreground hover:text-foreground"
+          >
+            {theme === 'dark' ? <Sun className="h-[1.2rem] w-[1.2rem]" /> : <Moon className="h-[1.2rem] w-[1.2rem]" />}
+            <span className="sr-only">Toggle theme</span>
+          </Button>
         </div>
         
         <Separator className="my-4 transition-colors duration-300" />
