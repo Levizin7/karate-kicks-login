@@ -8,15 +8,25 @@ interface ThemeContextType {
   toggleTheme: () => void;
 }
 
+interface ThemeProviderProps {
+  children: React.ReactNode;
+  defaultTheme?: Theme;
+  storageKey?: string;
+}
+
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
-export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
-  const [theme, setTheme] = useState<Theme>("dark");
+export const ThemeProvider = ({ 
+  children, 
+  defaultTheme = "dark",
+  storageKey = "karate_theme" 
+}: ThemeProviderProps) => {
+  const [theme, setTheme] = useState<Theme>(defaultTheme);
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     setMounted(true);
-    const savedTheme = localStorage.getItem("karate_theme") as Theme | null;
+    const savedTheme = localStorage.getItem(storageKey) as Theme | null;
     const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
     
     const initialTheme = savedTheme || (prefersDark ? "dark" : "light");
@@ -29,12 +39,12 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
       document.documentElement.classList.remove("dark");
       document.documentElement.classList.add("light-theme");
     }
-  }, []);
+  }, [storageKey]);
 
   const toggleTheme = () => {
     const newTheme = theme === "dark" ? "light" : "dark";
     setTheme(newTheme);
-    localStorage.setItem("karate_theme", newTheme);
+    localStorage.setItem(storageKey, newTheme);
     
     // Apply classes with smooth transitions
     if (newTheme === "dark") {
