@@ -23,30 +23,39 @@ export function MobileMenu() {
   };
 
   return (
-    <div className="md:hidden fixed top-4 left-4 z-50 animate-fade-in">
+    <div className="md:hidden fixed top-4 right-4 z-50 animate-fade-in">
       <Sheet open={isOpen} onOpenChange={setIsOpen}>
         <SheetTrigger asChild>
-          <Button variant="outline" size="icon" className="rounded-full bg-background/80 backdrop-blur-sm border border-border/40 shadow-md hover:shadow-lg transition-all">
+          <Button 
+            variant="outline" 
+            size="icon" 
+            className="rounded-full bg-background/80 backdrop-blur-sm border border-border/40 shadow-md hover:shadow-lg transition-all"
+          >
             <Menu className="h-5 w-5" />
             <span className="sr-only">Toggle menu</span>
           </Button>
         </SheetTrigger>
-        <SheetContent side="left" className="p-0 w-[280px] border-r bg-sidebar">
+        <SheetContent 
+          side="left" 
+          className="p-0 w-[280px] border-r bg-sidebar"
+          showCloseButton={false}
+        >
           <div className="flex h-full flex-col">
-            <Button 
-              variant="ghost" 
-              size="icon" 
-              className="absolute right-4 top-4 rounded-full hover:bg-muted transition-all duration-200"
-              onClick={() => setIsOpen(false)}
-            >
-              <X className="h-5 w-5" />
-            </Button>
-
-            <div className="flex shrink-0 items-center gap-2 px-6 py-5 animate-fade-in">
-              <div className="w-8 h-8 bg-primary rounded-md flex items-center justify-center transition-colors duration-300">
-                <span className="text-white font-bold">K</span>
+            <div className="flex items-center justify-between px-6 py-5 animate-fade-in">
+              <div className="flex items-center gap-2">
+                <div className="w-8 h-8 bg-primary rounded-md flex items-center justify-center transition-colors duration-300">
+                  <span className="text-white font-bold">K</span>
+                </div>
+                <h1 className="text-xl font-bold transition-colors duration-300">Karate Manager</h1>
               </div>
-              <h1 className="text-xl font-bold transition-colors duration-300">Karate Manager</h1>
+              <Button 
+                variant="ghost" 
+                size="icon" 
+                className="rounded-full hover:bg-muted transition-all duration-200"
+                onClick={() => setIsOpen(false)}
+              >
+                <X className="h-5 w-5" />
+              </Button>
             </div>
             
             <div className="flex flex-1 flex-col px-3 py-3 gap-1 overflow-auto">
