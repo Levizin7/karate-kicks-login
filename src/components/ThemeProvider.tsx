@@ -17,10 +17,17 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
   useEffect(() => {
     setMounted(true);
     const savedTheme = localStorage.getItem("karate_theme") as Theme | null;
-    if (savedTheme) {
-      setTheme(savedTheme);
-      document.documentElement.classList.toggle("dark", savedTheme === "dark");
-      document.documentElement.classList.toggle("light-theme", savedTheme === "light");
+    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    
+    const initialTheme = savedTheme || (prefersDark ? "dark" : "light");
+    setTheme(initialTheme);
+    
+    if (initialTheme === "dark") {
+      document.documentElement.classList.add("dark");
+      document.documentElement.classList.remove("light-theme");
+    } else {
+      document.documentElement.classList.remove("dark");
+      document.documentElement.classList.add("light-theme");
     }
   }, []);
 
@@ -29,7 +36,7 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
     setTheme(newTheme);
     localStorage.setItem("karate_theme", newTheme);
     
-    // Apply classes with transitions
+    // Apply classes with smooth transitions
     if (newTheme === "dark") {
       document.documentElement.classList.add("dark");
       document.documentElement.classList.remove("light-theme");

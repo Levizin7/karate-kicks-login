@@ -8,14 +8,18 @@ interface StatCardProps {
   icon: LucideIcon;
   iconColor?: string;
   className?: string;
+  style?: React.CSSProperties;
 }
 
-export function StatCard({ title, value, icon: Icon, iconColor, className }: StatCardProps) {
+export function StatCard({ title, value, icon: Icon, iconColor, className, style }: StatCardProps) {
   return (
-    <div className={cn(
-      "glass-card rounded-lg p-5 animate-scale-in hover-scale hover-glow",
-      className
-    )}>
+    <div 
+      className={cn(
+        "glass-card rounded-lg p-5 animate-scale-in hover-scale hover-glow",
+        className
+      )}
+      style={style}
+    >
       <div className="flex items-center justify-between">
         <p className="text-sm font-medium text-muted-foreground">{title}</p>
         <div className={cn(

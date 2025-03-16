@@ -30,29 +30,29 @@ const Dashboard = () => {
       <div className="flex min-h-screen bg-background transition-colors duration-300">
         <Sidebar />
         
-        <div className="flex-1 ml-64">
+        <div className="flex-1 md:ml-64">
           {isRootDashboard ? (
             <>
-              <header className="sticky top-0 z-40 flex items-center justify-between gap-4 border-b bg-background/95 px-8 py-4 backdrop-blur transition-all duration-300 animate-fade-in">
+              <header className="sticky top-0 z-30 flex items-center justify-between gap-4 border-b bg-background/95 px-4 sm:px-6 md:px-8 py-4 backdrop-blur transition-all duration-300 animate-fade-in">
                 <div>
-                  <h1 className="text-2xl font-semibold tracking-tight">Visão Geral</h1>
-                  <p className="text-muted-foreground">Bem-vindo ao seu centro de gerenciamento de torneios de karatê</p>
+                  <h1 className="text-xl sm:text-2xl font-semibold tracking-tight">Visão Geral</h1>
+                  <p className="text-sm text-muted-foreground">Bem-vindo ao seu centro de gerenciamento de torneios de karatê</p>
                 </div>
                 
-                <div className="flex items-center gap-3">
-                  <Button variant="outline" className="gap-2 animate-scale-in" style={{ animationDelay: '100ms' }}>
+                <div className="flex items-center gap-2 sm:gap-3">
+                  <Button variant="outline" size="sm" className="gap-2 animate-scale-in hidden sm:flex" style={{ animationDelay: '100ms' }}>
                     <Trophy className="h-4 w-4" />
                     <span>Torneio</span>
                   </Button>
-                  <Button className="gap-2 animate-scale-in" style={{ animationDelay: '200ms' }}>
-                    <span>Novo Atleta</span>
-                    <span className="text-lg">+</span>
+                  <Button size="sm" className="gap-2 animate-scale-in" style={{ animationDelay: '200ms' }}>
+                    <span className="hidden sm:inline">Novo Atleta</span>
+                    <span className="sm:text-lg">+</span>
                   </Button>
                 </div>
               </header>
               
-              <main className="px-8 py-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
+              <main className="px-4 sm:px-6 md:px-8 py-4 sm:py-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-6 sm:mb-10">
                   <StatCard 
                     title="Total Atletas" 
                     value="124" 
@@ -87,15 +87,15 @@ const Dashboard = () => {
                   />
                 </div>
                 
-                <div className="grid grid-cols-1 lg:grid-cols-5 gap-8">
+                <div className="grid grid-cols-1 lg:grid-cols-5 gap-4 sm:gap-8">
                   <div className="lg:col-span-3">
-                    <div className="flex items-center justify-between mb-5 animate-fade-in" style={{ animationDelay: '450ms' }}>
+                    <div className="flex items-center justify-between mb-3 sm:mb-5 animate-fade-in" style={{ animationDelay: '450ms' }}>
                       <div>
-                        <h2 className="text-xl font-semibold">Lutas de hoje</h2>
-                        <p className="text-sm text-muted-foreground">Próximas lutas e eventos</p>
+                        <h2 className="text-lg sm:text-xl font-semibold">Lutas de hoje</h2>
+                        <p className="text-xs sm:text-sm text-muted-foreground">Próximas lutas e eventos</p>
                       </div>
                       <Button variant="outline" size="sm" className="gap-1">
-                        <span>Ver todas</span>
+                        <span className="hidden sm:inline">Ver todas</span>
                         <ChevronRight className="h-4 w-4" />
                       </Button>
                     </div>
@@ -132,9 +132,9 @@ const Dashboard = () => {
                   </div>
                   
                   <div className="lg:col-span-2">
-                    <div className="mb-5 animate-fade-in" style={{ animationDelay: '450ms' }}>
-                      <h2 className="text-xl font-semibold">Ações Rápidas</h2>
-                      <p className="text-sm text-muted-foreground">Funções mais usadas</p>
+                    <div className="mb-3 sm:mb-5 animate-fade-in" style={{ animationDelay: '450ms' }}>
+                      <h2 className="text-lg sm:text-xl font-semibold">Ações Rápidas</h2>
+                      <p className="text-xs sm:text-sm text-muted-foreground">Funções mais usadas</p>
                     </div>
                     
                     <div>
@@ -168,7 +168,9 @@ const Dashboard = () => {
               </main>
             </>
           ) : (
-            <Outlet />
+            <div className="p-4 sm:p-6 md:p-8">
+              <Outlet />
+            </div>
           )}
         </div>
       </div>

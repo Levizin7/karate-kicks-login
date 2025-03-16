@@ -1,14 +1,17 @@
 
-import { BarChart2, Calendar, Home, LogOut, Settings, Shield, Users } from "lucide-react";
-import Logo from "@/components/Logo";
+import { BarChart2, Calendar, Home, LogOut, Menu, Settings, Shield, Users, X } from "lucide-react";
 import { SidebarLink } from "@/components/SidebarLink";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { Separator } from "@/components/ui/separator";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { Button } from "@/components/ui/button";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 export function Sidebar() {
   const navigate = useNavigate();
+  const [isOpen, setIsOpen] = useState(false);
 
   const handleLogout = () => {
     localStorage.removeItem('karate_username');
@@ -17,8 +20,9 @@ export function Sidebar() {
     navigate('/');
   };
 
-  return (
-    <div className="fixed inset-y-0 left-0 z-50 flex w-64 flex-col border-r bg-sidebar border-border transition-colors duration-300">
+  // Create reusable sidebar content
+  const SidebarContent = () => (
+    <>
       <div className="flex shrink-0 items-center gap-2 px-6 py-5 animate-fade-in">
         <div className="w-8 h-8 bg-primary rounded-md flex items-center justify-center transition-colors duration-300">
           <span className="text-white font-bold">K</span>
@@ -27,13 +31,55 @@ export function Sidebar() {
       </div>
       
       <div className="flex flex-1 flex-col px-4 py-4 gap-1">
-        <SidebarLink icon={Home} label="Visão Geral" to="/dashboard" className="animate-fade-in" style={{ animationDelay: '100ms' }} />
-        <SidebarLink icon={Users} label="Atletas" to="/dashboard/atletas" className="animate-fade-in" style={{ animationDelay: '150ms' }} />
-        <SidebarLink icon={Shield} label="Categorias" to="/dashboard/categorias" className="animate-fade-in" style={{ animationDelay: '200ms' }} />
-        <SidebarLink icon={Calendar} label="Torneios" to="/dashboard/torneios" className="animate-fade-in" style={{ animationDelay: '250ms' }} />
-        <SidebarLink icon={BarChart2} label="Pontuação" to="/dashboard/pontuacao" className="animate-fade-in" style={{ animationDelay: '300ms' }} />
-        <SidebarLink icon={BarChart2} label="Resultados" to="/dashboard/resultados" className="animate-fade-in" style={{ animationDelay: '350ms' }} />
-        <SidebarLink icon={Settings} label="Configurações" to="/dashboard/configuracoes" className="animate-fade-in" style={{ animationDelay: '400ms' }} />
+        <SidebarLink 
+          icon={Home} 
+          label="Visão Geral" 
+          to="/dashboard" 
+          className="animate-fade-in" 
+          style={{ animationDelay: '100ms' }} 
+        />
+        <SidebarLink 
+          icon={Users} 
+          label="Atletas" 
+          to="/dashboard/atletas" 
+          className="animate-fade-in" 
+          style={{ animationDelay: '150ms' }} 
+        />
+        <SidebarLink 
+          icon={Shield} 
+          label="Categorias" 
+          to="/dashboard/categorias" 
+          className="animate-fade-in" 
+          style={{ animationDelay: '200ms' }} 
+        />
+        <SidebarLink 
+          icon={Calendar} 
+          label="Torneios" 
+          to="/dashboard/torneios" 
+          className="animate-fade-in" 
+          style={{ animationDelay: '250ms' }} 
+        />
+        <SidebarLink 
+          icon={BarChart2} 
+          label="Pontuação" 
+          to="/dashboard/pontuacao" 
+          className="animate-fade-in" 
+          style={{ animationDelay: '300ms' }} 
+        />
+        <SidebarLink 
+          icon={BarChart2} 
+          label="Resultados" 
+          to="/dashboard/resultados" 
+          className="animate-fade-in" 
+          style={{ animationDelay: '350ms' }} 
+        />
+        <SidebarLink 
+          icon={Settings} 
+          label="Configurações" 
+          to="/dashboard/configuracoes" 
+          className="animate-fade-in" 
+          style={{ animationDelay: '400ms' }} 
+        />
       </div>
 
       <div className="border-t border-border p-4 animate-fade-in" style={{ animationDelay: '450ms' }}>
@@ -60,6 +106,40 @@ export function Sidebar() {
           <span>Logout</span>
         </button>
       </div>
-    </div>
+    </>
+  );
+
+  return (
+    <>
+      {/* Mobile menu button */}
+      <div className="md:hidden fixed top-4 left-4 z-50">
+        <Sheet open={isOpen} onOpenChange={setIsOpen}>
+          <SheetTrigger asChild>
+            <Button variant="outline" size="icon" className="rounded-full">
+              <Menu className="h-5 w-5" />
+              <span className="sr-only">Toggle menu</span>
+            </Button>
+          </SheetTrigger>
+          <SheetContent side="left" className="p-0 w-[280px] sm:w-[350px] border-r bg-sidebar">
+            <div className="flex h-full flex-col">
+              <Button 
+                variant="ghost" 
+                size="icon" 
+                className="absolute right-4 top-4 rounded-full"
+                onClick={() => setIsOpen(false)}
+              >
+                <X className="h-5 w-5" />
+              </Button>
+              <SidebarContent />
+            </div>
+          </SheetContent>
+        </Sheet>
+      </div>
+
+      {/* Desktop sidebar */}
+      <div className="hidden md:fixed md:inset-y-0 md:left-0 md:z-50 md:flex md:w-64 md:flex-col border-r bg-sidebar border-border transition-colors duration-300">
+        <SidebarContent />
+      </div>
+    </>
   );
 }
